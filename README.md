@@ -1,10 +1,12 @@
 #shadowsocksService  Document
 
+
 ## Depends 
+
  - python 
  - pip	 
  - FreeBSD
-
+  + linux-os
 ## Include Part
  - download a shadowsocks
  - start a service for shadowsocks server and local 
