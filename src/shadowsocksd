@@ -1,0 +1,78 @@
+#!/bin/sh
+
+
+DESC='to start shadowsocks to linux service  server-band';
+NAME=ssl
+
+echo "tyep : [server/local]\r";
+read TYPE;
+case $TYPE in
+	"server")
+		CMD="nohup ssserver -c /etc/shadowsocks.json";
+		;;
+	"local")
+		CMD="nohup ssslocal -c /etc/shadowsocks.json";
+		;;
+esac
+
+#function 
+check_file(){
+    if [ -e  $1 ];
+        then
+            echo "$1 file  check ...... [ok]";
+        else
+            touch  $1;
+    fi
+}	
+
+
+#check three file if exist ... shadowsock.json , shadowsocks_err.log shadowsocks.log
+
+check_file "/var/log/shadowsocks_err.log" ;
+check_file "/var/log/shadowsocks.log" ;
+check_file "/etc/shadowsocks.json" ;
+
+
+
+
+do_start(){
+    OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    $CMD 2>> /var/log/shadowsocks_err.log  >>  /var/log/shadowsocks.log;
+    
+    NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    if [ $NEW_LINE > $OLD_LINE ];
+    then
+	    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
+    else
+	    echo "sslocal start service   [ok] ";
+    fi
+
+    
+}
+
+
+do_stop(){
+    OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    echo "$(ps aux | grep sslocald | egrep -v "(egrep|grep)" | awk "{print $3 }" |xargs kill -9 )"  2>> /var/log/shadowsocks_err.log >&1 ;
+    NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+
+    if [ $NEW_LINE > $OLD_LINE ];
+    then
+	    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
+    else 
+	    echo "sslocal stop service 	  [ok] ";
+    fi
+
+}
+
+
+case "$1" in
+    start)
+	do_start
+	;;
+    stop)
+        do_stop
+	;;
+esac
+
+exit 0
