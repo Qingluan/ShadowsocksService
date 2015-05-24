@@ -1,6 +1,9 @@
 #shadowsocksService  Document
 
-## Depends : python pip	 FreeBSD
+## Depends 
+ - python 
+ - pip	 
+ - FreeBSD
 
 ## Include Part
  - download a shadowsocks
@@ -14,4 +17,6 @@
 
 ## Useage 
 
-> sudo service shadowsocksd [start|stop]
+
+> sudo service shadowsocksd [start|stop] # this will include ssserver and sslocal ,in other word , this service can build shadowsocks or connect to a exit ssserver within same shadowsocks.json whtich is shadowsocks's conifg file .
+
