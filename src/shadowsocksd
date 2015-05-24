@@ -4,13 +4,13 @@
 DESC='to start shadowsocks to linux service  server-band';
 NAME=ssl
 
-echo "tyep : [server/local]\r";
+echo "tyep : [ssserver/sslocal]\r";
 read TYPE;
 case $TYPE in
-	"server")
+	"ssserver")
 		CMD="nohup ssserver -c /etc/shadowsocks.json";
 		;;
-	"local")
+	"sslocal")
 		CMD="nohup sslocal -c /etc/shadowsocks.json";
 		;;
 esac
