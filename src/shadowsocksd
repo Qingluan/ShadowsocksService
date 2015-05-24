@@ -11,7 +11,7 @@ case $TYPE in
 		CMD="nohup ssserver -c /etc/shadowsocks.json";
 		;;
 	"local")
-		CMD="nohup ssslocal -c /etc/shadowsocks.json";
+		CMD="nohup sslocal -c /etc/shadowsocks.json";
 		;;
 esac
 
