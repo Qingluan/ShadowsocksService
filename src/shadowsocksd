@@ -53,7 +53,7 @@ do_start(){
 
 do_stop(){
     OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
-    echo "$(ps aux | grep sslocald | egrep -v "(egrep|grep)" | awk "{print $3 }" |xargs kill -9 )"  2>> /var/log/shadowsocks_err.log >&1 ;
+    echo "$(ps aux | grep $TYPE | egrep -v "(egrep|grep)" | awk "{print $3 }" |xargs kill -9 )"  2>> /var/log/shadowsocks_err.log >&1 ;
     NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
 
     if [ $NEW_LINE > $OLD_LINE ];
