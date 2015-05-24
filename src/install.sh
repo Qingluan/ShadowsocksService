@@ -67,6 +67,7 @@ echo "if install service ? [y/n]  ! this service only work in linux os \r";
 read choose;
 case $choose in 
 	"y")
+		echo "$(sudo chmod +x shadowsocksd )";
 		echo "$(sudo cp shadowsocksd /etc/init.d/ )";
 		;;
 esac
