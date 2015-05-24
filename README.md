@@ -1,5 +1,8 @@
 #shadowsocksService  Document
->Include Part
+
+## Depends : python pip	 FreeBSD
+
+## Include Part
  - download a shadowsocks
  - start a service for shadowsocks server and local 
  
@@ -11,4 +14,4 @@
 
 ## Useage 
 
-> sudo service [start|stop]
+> sudo service shadowsocksd [start|stop]
