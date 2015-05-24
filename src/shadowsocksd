@@ -37,7 +37,7 @@ check_file "/etc/shadowsocks.json" ;
 
 do_start(){
     OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
-    $CMD 2>> /var/log/shadowsocks_err.log  >>  /var/log/shadowsocks.log;
+    echo "$($CMD 2>> /var/log/shadowsocks_err.log  >>  /var/log/shadowsocks.log &)";
     
     NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
     if [ $NEW_LINE > $OLD_LINE ];
