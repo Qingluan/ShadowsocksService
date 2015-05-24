@@ -36,33 +36,33 @@ check_file "/etc/shadowsocks.json" ;
 
 
 do_start(){
-    OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    #OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
     echo "$($CMD  >> /var/log/shadowsocks_err.log  2>>  /var/log/shadowsocks.log &)";
     
-    NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    #NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
     if [ $NEW_LINE > $OLD_LINE ];
-    then
-	    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
-    else
+    #then
+	#    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
+    #else
 	    echo "sslocal start service   [ok] ";
-    fi
+    #fi
 
     
 }
 
 
 do_stop(){
-    OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    #OLD_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
     #echo "$(ps aux | egrep ($TYPE) | egrep -v "(egrep|grep)" | awk "{print $2 }" |xargs kill -9 )"  2>> /var/log/shadowsocks_err.log >&1 ;
     echo "$(killall $TYPE)"  >> /var/log/shadowsocks_err.log  2>> /var/log/shadowsocks.log   ;
-    NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
+    #NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
 
-    if [ $NEW_LINE > $OLD_LINE ];
-    then
-	    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
-    else 
+    #if [ $NEW_LINE > $OLD_LINE ];
+    #then
+#	    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
+ #   else 
 	    echo "sslocal stop service 	  [ok] ";
-    fi
+  #  fi
 
 }
 

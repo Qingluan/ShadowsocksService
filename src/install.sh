@@ -1,9 +1,15 @@
 #!/bin/sh
 
 CONFIG_FILE="shadowsocks.json";
+ERR_FILE="/tmp/err.log";
 
-
-#sudo pip install shadowsocks  2> /tmp/err.log  >&1 ;
+sslocal -h 2> $ERR_FILE;
+if [ -e $ERR_FILE ];
+then
+	python -c "print 'download shadowsocks by pip ...', ";
+	echo"$(sudo pip install shadowsocks  2> /tmp/err.log  >&1 )";
+	python -c "print 'ok'";
+fi
 
 gen_conifg(){
 
@@ -76,3 +82,7 @@ esac
 echo "install compelte !";
 
 
+if [ -e $ERR_FILE ];
+then
+	rm $ERR_FILE;
+fi	
