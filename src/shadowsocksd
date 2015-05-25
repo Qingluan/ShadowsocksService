@@ -40,7 +40,7 @@ do_start(){
     echo "$($CMD  >> /var/log/shadowsocks_err.log  2>>  /var/log/shadowsocks.log &)";
     
     #NEW_LINE=" $(wc -l /var/log/shadowsocks_err.log | awk '{print $1 }' ) " ;
-    if [ $NEW_LINE > $OLD_LINE ];
+    #if [ $NEW_LINE > $OLD_LINE ];
     #then
 	#    echo "error : $(tail /var/log/shadowsocks_err.log) ;";
     #else
