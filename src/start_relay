@@ -1,0 +1,13 @@
+#!/bin/sh
+echo "server :"
+read SERVER;
+echo "from port : "
+read PORT;
+echo "to port :"
+read TO_PORT;
+echo "remote ssh port :[default : 22]"
+read SSH_PORT;
+
+
+ssh -fL 0.0.0.0:$TO_PORT:$SERVER:$PORT  root@$SERVER -p $SSH_PORT -N
+
